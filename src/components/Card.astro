@@ -1,0 +1,50 @@
+---
+const { title, pubDate, description, tags, href } = Astro.props;
+const slug = title.replace(/\s+/g, '-').toLowerCase();
+---
+
+<a href={href} class="card">
+    <h2>{title}</h2>
+    <p class="publish-date">{pubDate}</p>
+    <p class="description">{description}</p>
+    <div class="tags">
+        {tags.map((tag: any) => (
+            <span class="tag-pill">{tag}</span>
+        ))}
+    </div>
+</a>
+
+<style>
+  .card {
+    //border: 1px solid #ccc;
+    padding: 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: transform 0.2s;
+  }
+  .card:hover {
+    transform: scale(1.05);
+  }
+  .publish-date {
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+  }
+  .description {
+    font-size: 1rem;
+    margin-bottom: 16px;
+  }
+  .tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .tag-pill {
+    background-color: #f0f0f0;
+    padding: 4px 8px;
+    border-radius: 16px;
+    font-size: 0.85rem;
+    color: #333;
+  }
+</style>

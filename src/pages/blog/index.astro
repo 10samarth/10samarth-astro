@@ -1,4 +1,5 @@
 ---
+import Card from '../../components/Card.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const title = 'Blog';
@@ -12,7 +13,28 @@ allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.publishDate).valueOf()
 <BaseLayout title={title} description={description} permalink={permalink} current="blog">
   <div class="container">
     <h1>Blog</h1>
+
+    <div>
     {allPosts.map((post, index) => {
+      const href = `/blog/${post.file?.split('/').pop()?.split('.').shift()}`;
+      return (
+        <div>
+          { index !== 0 && <hr /> }
+          <div class="mb-[50px]">
+          <Card
+            title={post.frontmatter.title}
+            pubDate={post.frontmatter.publishDate}
+            description={post.frontmatter.description}
+            tags={post.frontmatter.tags || []}
+            href={href}
+          />
+          </div>
+        </div>
+      )
+    })}
+    </div>
+    
+    <!-- {allPosts.map((post, index) => {
       const href = `/blog/${post.file?.split('/').pop()?.split('.').shift()}`;
       return (
         <div>
@@ -28,7 +50,7 @@ allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.publishDate).valueOf()
           </div>
         </div>
       )
-    })}
+    })} -->
   </div>
 </BaseLayout>
 
@@ -47,6 +69,6 @@ allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.publishDate).valueOf()
   }
 
   hr {
-    margin: 60px auto;
+    margin: 30px auto;
   }
 </style>
