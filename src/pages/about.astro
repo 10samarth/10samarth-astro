@@ -1,42 +1,135 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import DisplayCard from "../components/DisplayCard.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 
-const title = 'About';
-const description = 'About your blog.';
+const title = "About";
+const description = "About your blog.";
 const permalink = `${Astro.site?.href}about`;
 ---
 
-<BaseLayout title={title} description={description} permalink={permalink} current="about">
+<BaseLayout
+  title={title}
+  description={description}
+  permalink={permalink}
+  current="about"
+>
   <div class="container">
     <h1>About</h1>
-    <figure class="about-image">
-      <img src="/assets/rocket.webp" alt="Illustration of a notebook" width="330">
-    </figure>
-    <p>Welcome to Tech Tales & Random Insights, your digital hub for
-      everything from the latest in technology to personal stories and
-      thought-provoking randomness. Whether you're a tech enthusiast, a
-      storyteller, or someone who enjoys venturing into the unpredictable,
-      you'll find something here that resonates with you. Let’s embark on a
-      journey where innovation and creativity collide!</p>
+    <div>
+      <p>
+        Welcome to Tech Tales & Random Insights, your digital hub for everything
+        from the latest in technology to personal stories and thought-provoking
+        randomness. Whether you're a tech enthusiast, a storyteller, or someone
+        who enjoys venturing into the unpredictable, you'll find something here
+        that resonates with you. Let’s embark on a journey where innovation and
+        creativity collide!
+      </p>
+    </div>
+
+    <h2 class="mt-[100px] mb-[1px]">About Me</h2>
+    <div
+      class="flex flex-col md:flex-row justify-around items-center content-center gap-5"
+    >
+      <figure class="mt-10 md:hidden">
+        <img
+          src="/assets/pic.png"
+          alt="samarth photo"
+          class="min-w-[330px] rounded-full"
+        />
+      </figure>
+      <div>
+        <p>
+          I'm Samarth Goudar, a Full Stack Developer at PAIGE. I specialize in
+          creating dynamic, high-performance web applications, using both
+          front-end and back-end technologies to deliver innovative solutions.
+        </p>
+      </div>
+      <figure class="mt-10 hidden md:block">
+        <img src="/assets/pic.png" alt="samarth photo" class="rounded-full" />
+      </figure>
+    </div>
+    <div>
+      <p>Technical Skills Languages : JavaScript, Python, C++, C#, Java</p>
+      <p>Databases : MongoDB, MySQL, MS SQL, PostgreSQL</p>
+      <p>
+        Web Technologies : React, Typescript, Node.js, GraphQL, ExpressJS,
+        Angular, HTML, CSS
+      </p>
+      <p>
+        Technologies and Frameworks : Spring, .NET Core, .NET MVC, REST APIs,
+        Microservices, Redis, Kafka, AWS, Azure, GCP, Kubernetes, Docker, Git,
+        TFS, CI/CD
+      </p>
+    </div>
+    <div>
+      <h2>Education</h2>
+      <DisplayCard
+        img="sjsu.jpeg"
+        title="San Jose State University"
+        text="Master of Science - MS, Computer Engineering"
+        date="Aug 2021 - May 2023"
+        details="GPA 3.81"
+      />
+
+      <DisplayCard
+        img="sppu.jpeg"
+        title="Savitribai Phule Pune University"
+        text="Bachelor of Engineering - BE Electrical, Electronics and Communications Engineering"
+        date="June 2012 - June 2016"
+        details="GPA 3.5"
+      />
+
+      <div>
+        <h2>Experience</h2>
+
+        <DisplayCard
+          img="paige.jpeg"
+          title="Full Stack Software Engineer"
+          text="Paige LLC, Los Angeles, California"
+          date="May 2023 - Present"
+        />
+
+        <DisplayCard
+          img="cdk.jpg"
+          title="Software Engineer Intern"
+          text="CDK Global, San Jose, California"
+          date="Jun 2022 - Aug 2022"
+        />
+
+        <DisplayCard
+          img="icertis.jpeg"
+          title="Software Engineer"
+          text="Icertis, Pune, India"
+          date="Nov 2020 - Jun 2021"
+        />
+
+        <DisplayCard
+          img="cybage.jpeg"
+          title="Software Engineer"
+          text="Cybage, Pune, India"
+          date="Nov 2016 - Oct 2020"
+        />
+      </div>
+    </div>
   </div>
-</BaseLayout>
 
-<style>
-  .about-image {
-    float: right;
-    margin: -3em -7em 2em 2em;
-    max-width: 300px;
-  }
-
-  .about-image img {
-    border-radius: 8px;
-    margin-bottom: 1.5em;
-  }
-
-  @media (max-width: 1020px) {
+  <style>
     .about-image {
-      float: none;
-      margin: 0 auto 2em;
+      float: right;
+      margin: -3em -7em 2em 2em;
+      max-width: 300px;
     }
-  }
-</style>
+
+    .about-image img {
+      border-radius: 8px;
+      margin-bottom: 1.5em;
+    }
+
+    @media (max-width: 1020px) {
+      .about-image {
+        float: none;
+        margin: 0 auto 2em;
+      }
+    }
+  </style>
+</BaseLayout>

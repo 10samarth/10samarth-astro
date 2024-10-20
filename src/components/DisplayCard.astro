@@ -1,0 +1,27 @@
+---
+const { img, title, text, date, details } = Astro.props;
+---
+
+<div class="m-3 p-4 border-0 shadow-lg rounded-lg">
+  <div class="flex">
+    <div class="flex-shrink-0 self-center w-16 h-16">
+      <img src={`/assets/${img}`} class={`mx-auto`} alt={title} />
+    </div>
+    <div class="flex-grow ml-4">
+      <div class="font-bold text-lg mb-2">{title}</div>
+      <div class="font-semibold text-gray-600">{text}</div>
+      <div class="text-sm text-gray-500">{date}</div>
+      <div class="text-sm">{ details }</div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .icoFav {
+    height: 150px;
+    object-fit: contain;
+    padding: 10px;
+    margin-left: 15px;
+    padding-right: 20px;
+  }
+</style>
