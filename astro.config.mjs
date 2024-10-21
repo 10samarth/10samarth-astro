@@ -5,13 +5,13 @@ import mdx from '@astrojs/mdx';
 import remarkGfm from 'remark-gfm';
 import remarkSmartypants from 'remark-smartypants';
 import rehypeExternalLinks from 'rehype-external-links';
-
+import react from '@astrojs/react';
 import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://10samarth.github.io',
-  integrations: [mdx(), svelte(), tailwind()],
+  integrations: [mdx(), svelte(), react(), tailwind()],
   markdown: {
     shikiConfig: {
       theme: 'nord'
@@ -20,5 +20,10 @@ export default defineConfig({
     rehypePlugins: [[rehypeExternalLinks, {
       target: '_blank'
     }]]
-  }
+  },
+  vite: {
+    ssr: {
+      noExternal: ["react-icons"],
+    },
+  },
 });

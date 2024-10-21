@@ -279,3 +279,16 @@ input[name='theme-toggle'] {
     margin: 1em 0;
   }
 }
+
+.tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.tag-pill {
+  background-color: #f0f0f0;
+  padding: 4px 8px;
+  border-radius: 16px;
+  font-size: 0.85rem;
+  color: #333;
+}

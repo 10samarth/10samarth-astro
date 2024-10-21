@@ -2,7 +2,7 @@
 title: Life is about moments
 publishDate: 25 March 2023
 description: In this heartfelt reflection, I explore the beauty and significance of life's journey, emphasizing the importance of gratitude, love, and purpose. It's a reminder that life is about the memories we create and the people we share them with. Join me in embracing each day with passion, kindness, and hope, and let this message inspire you to live fully and fearlessly.
-tags: ["Life Reflections", "Gratitude", "Personal Growth", "Inspiration", "Mindfulness", "Purposeful Living", "Kindness", "Hope", "Love and Connection", "Positive Thinking"]
+tags: ["Life Reflections", "Gratitude"]
 ---
 
 As I sit here, reflecting on life and all its complexities, my heart is filled with an overwhelming sense of gratitude for the time I have.

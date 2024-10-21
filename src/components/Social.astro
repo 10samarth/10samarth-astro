@@ -1,0 +1,28 @@
+---
+import { FaLinkedin, FaGithub, FaTwitter, FaEnvelope } from 'react-icons/fa';
+
+const { linkedin, github, twitter, email } = {
+    linkedin:'https://www.linkedin.com/in/samarthmg/',
+    github:'https://www.github.com/10samarth',
+    twitter:'https://www.twitter.com/10samarth',
+    email:'mailto:samarthmg@gmail.com?subject=Connect!&body=Hi Samarth, '
+};
+---
+
+<div class="flex space-x-4 justify-center my-4">
+  <a href={linkedin} target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-blue-500">
+    <FaLinkedin size="2em" />
+  </a>
+
+  <a href={github} target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-black">
+    <FaGithub size="2em" />
+  </a>
+
+  <a href={twitter} target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-blue-400">
+    <FaTwitter size="2em" />
+  </a>
+
+  <a href={email} target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-red-500">
+    <FaEnvelope size="2em" />
+  </a>
+</div>

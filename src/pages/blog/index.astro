@@ -1,13 +1,14 @@
 ---
 import Card from '../../components/Card.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from "astro:content";
 
 const title = 'Blog';
 const description = 'Latest articles.';
 const permalink = `${Astro.site?.href}blog`;
 
-let allPosts = await Astro.glob('../../data/blog-posts/*.md');
-allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontmatter.publishDate).valueOf());
+let allPosts = await getCollection("posts");
+allPosts = allPosts.sort((a, b) => new Date(b.data.publishDate).valueOf() - new Date(a.data.publishDate).valueOf());
 ---
 
 <BaseLayout title={title} description={description} permalink={permalink} current="blog">
@@ -16,16 +17,16 @@ allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.publishDate).valueOf()
 
     <div>
     {allPosts.map((post, index) => {
-      const href = `/blog/${post.file?.split('/').pop()?.split('.').shift()}`;
+      const href = `/blog/${post.slug}`;
       return (
         <div>
           { index !== 0 && <hr /> }
           <div class="mb-[50px]">
           <Card
-            title={post.frontmatter.title}
-            pubDate={post.frontmatter.publishDate}
-            description={post.frontmatter.description}
-            tags={post.frontmatter.tags || []}
+            title={post.data.title}
+            pubDate={post.data.publishDate}
+            description={post.data.description}
+            tags={post.data.tags || []}
             href={href}
           />
           </div>
@@ -33,24 +34,6 @@ allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.publishDate).valueOf()
       )
     })}
     </div>
-    
-    <!-- {allPosts.map((post, index) => {
-      const href = `/blog/${post.file?.split('/').pop()?.split('.').shift()}`;
-      return (
-        <div>
-          { index !== 0 && <hr /> }
-          <div class="post-item">
-            <h2>
-              <a href={href}>{post.frontmatter.title}</a>
-            </h2>
-            <p>{post.frontmatter.description}</p>
-            <div class="post-item-footer">
-              <span class="post-item-date">— {post.frontmatter.publishDate}</span>
-            </div>
-          </div>
-        </div>
-      )
-    })} -->
   </div>
 </BaseLayout>
 

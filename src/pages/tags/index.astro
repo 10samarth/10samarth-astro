@@ -1,0 +1,19 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+const allPosts = await getCollection("posts");
+const tags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
+const pageTitle = "Tag Index";
+---
+
+<BaseLayout title={"Tags"} description={""} permalink={""} current="blog">
+  <div class="tags">
+    {
+      tags.map((tag) => (
+        <p class="tag">
+          <a href={`/tags/${tag}`}>{tag}</a>
+        </p>
+      ))
+    }
+  </div>
+</BaseLayout>
