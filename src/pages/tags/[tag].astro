@@ -25,27 +25,22 @@ const { tag } = Astro.params;
 const { posts } = Astro.props;
 ---
 
-<BaseLayout
-  title={tag}
-  description={''}
-  permalink={''}
-  current="blog"
->
+<BaseLayout title={tag} description={""} permalink={""} current="blog">
   <div class="container">
-    <p>Posts tagged with {tag}</p>
-    <ul>
-      {
-        posts.map((post) => (
-          <Card
-            title={post.data.title}
-            pubDate={post.data.publishDate}
-            description={post.data.description}
-            tags={post.data.tags || []}
-            href={`/blog/${post.slug}`}
-          />
-        ))
-      }
-    </ul>
+    <p>Posts tagged with <span class="font-black">{tag}</span></p>
+
+    {
+      posts.map((post) => (
+        <Card
+          title={post.data.title}
+          pubDate={post.data.publishDate}
+          description={post.data.description}
+          tags={post.data.tags || []}
+          href={`/blog/${post.slug}`}
+        />
+      ))
+    }
+
     <hr />
   </div>
   <Bio />

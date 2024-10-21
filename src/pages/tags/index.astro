@@ -3,17 +3,51 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 const allPosts = await getCollection("posts");
 const tags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
-const pageTitle = "Tag Index";
+let filteredTags = tags;
 ---
 
 <BaseLayout title={"Tags"} description={""} permalink={""} current="blog">
-  <div class="tags">
+  <div>
+    <h1>Search Tags</h1>
+    <input
+      type="text"
+      placeholder="Search tags..."
+      class="search-bar w-full max-w-md px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+    />
+  </div>
+  <div class="tags mt-[50px]">
     {
-      tags.map((tag) => (
-        <p class="tag">
-          <a href={`/tags/${tag}`}>{tag}</a>
-        </p>
-      ))
+      filteredTags.length > 0 ? (
+        filteredTags.map((tag) => (
+          <div>
+            <p class="tag-pill ml-3">
+              <a href={`/tags/${tag}`}>{tag}</a>
+            </p>
+          </div>
+        ))
+      ) : (
+        <p>No tags found</p>
+      )
     }
   </div>
 </BaseLayout>
+
+<script>
+  // Add client-side interactivity with script
+  const searchBar = document.querySelector(".search-bar");
+  const tagsContainer = document.querySelector(".tags");
+  const tagsList = tagsContainer ? [...tagsContainer.children] : [];
+
+  searchBar?.addEventListener("input", (event) => {
+    const searchValue = (event.target as HTMLInputElement).value.toLowerCase();
+    tagsList.forEach((tagItem) => {
+      const tagElement = tagItem as HTMLElement; // Cast to HTMLElement
+      const tagText = tagElement.textContent?.toLowerCase();
+      if (tagText?.includes(searchValue)) {
+        tagElement.style.display = "";
+      } else {
+        tagElement.style.display = "none";
+      }
+    });
+  });
+</script>

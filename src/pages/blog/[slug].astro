@@ -32,9 +32,14 @@ const { Content } = await entry.render();
       <Content />
     </article>
 
-    
-    <div class="tags mt-[130px]">
-      {entry.data.tags.map((tag: any) => <a class="tag-pill" href={`/tags/${tag}`}>{tag}</a>)}
+    <div class="tags mt-[70px] mb-[70px]">
+      {
+        entry.data.tags.map((tag: any) => (
+          <a class="tag-pill ml-3" href={`/tags/${tag}`}>
+            {tag}
+          </a>
+        ))
+      }
     </div>
 
     <hr />
@@ -61,5 +66,9 @@ const { Content } = await entry.render();
   header hr {
     min-width: 100px;
     width: 30%;
+  }
+
+  .tag-pill:hover {
+    transform: scale(1.15);
   }
 </style>

@@ -291,4 +291,5 @@ input[name='theme-toggle'] {
   border-radius: 16px;
   font-size: 0.85rem;
   color: #333;
+  transition: transform 0.2s;
 }
