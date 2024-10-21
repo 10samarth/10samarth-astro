@@ -1,0 +1,43 @@
+---
+import { getCollection } from "astro:content";
+import Card from "./Card.astro";
+
+const allPosts = await getCollection("posts");
+
+const latestPosts = allPosts
+  .sort(
+    (a, b) =>
+      new Date(b.data.publishDate).valueOf() -
+      new Date(a.data.publishDate).valueOf()
+  )
+  .slice(0, 3);
+---
+
+<section>
+  <div class="flex w-full justify-between items-center">
+    <h2>Latest Posts</h2>
+    <a href="/blog" >View All</a>
+  </div>
+  <div class="flex flex-wrap gap-5 mt-[15px]">
+    {
+      latestPosts.map((post) => (
+        <div class="max-w-[500px]">
+          <Card
+            title={post.data.title}
+            pubDate={post.data.publishDate}
+            description={post.data.description}
+            tags={post.data.tags}
+            href={`/blog/${post.slug}`}
+            image={post.data.image}
+          />
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+    h2 {
+        margin:0px;
+    }
+</style>

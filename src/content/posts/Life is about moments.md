@@ -3,7 +3,19 @@ title: Life is about moments
 publishDate: 25 March 2023
 description: In this heartfelt reflection, I explore the beauty and significance of life's journey, emphasizing the importance of gratitude, love, and purpose. It's a reminder that life is about the memories we create and the people we share them with. Join me in embracing each day with passion, kindness, and hope, and let this message inspire you to live fully and fearlessly.
 tags: ["Life Reflections", "Gratitude"]
+image:
+  url: "/assets/blog/Life-is-about-moments.webp"
+  alt: "The Astro logo with the word One."
 ---
+
+<div style="margin: 0 auto; border-radius: 15px; overflow: hidden; text-align: center;">
+    <img 
+        src="/assets/blog/Life-is-about-moments.webp" 
+        alt="Illustration of Life is about moments" 
+        style="width: 100%; height: 400px; object-fit: cover;"
+    >
+</div>
+
 
 As I sit here, reflecting on life and all its complexities, my heart is filled with an overwhelming sense of gratitude for the time I have.
 

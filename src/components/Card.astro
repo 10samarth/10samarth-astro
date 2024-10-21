@@ -1,19 +1,23 @@
 ---
-const { title, pubDate, description, tags, href } = Astro.props;
+const { title, pubDate, description, tags, href, image } = Astro.props;
 ---
 
-<a href={href} class="card">
-    <h2>{title}</h2>
-    <p class="publish-date">{pubDate}</p>
-    <p class="description">{description}</p>
-    <div class="tags">
-        {tags.map((tag: any) => (
-            <span class="tag-pill">{tag}</span>
-        ))}
-    </div>
+<a href={href} class="card shadow-lg rounded-lg">
+  <h2>{title}</h2>
+  <p class="publish-date">{pubDate}</p>
+  {image?.url && <img src={image.url} class="image-fill rounded-md" alt={image.alt} />}
+  <p class="description">{description}</p>
+  <div class="tags">
+    {tags.map((tag: any) => <span class="tag-pill">{tag}</span>)}
+  </div>
 </a>
 
 <style>
+  .image-fill {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
   .card {
     padding: 16px;
     border-radius: 8px;
@@ -33,5 +37,4 @@ const { title, pubDate, description, tags, href } = Astro.props;
     font-size: 1rem;
     margin-bottom: 16px;
   }
-
 </style>

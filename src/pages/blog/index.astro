@@ -1,46 +1,66 @@
 ---
-import Card from '../../components/Card.astro';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import Card from "../../components/Card.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 
-const title = 'Blog';
-const description = 'Latest articles.';
+const title = "Blog";
+const description = "Latest articles.";
 const permalink = `${Astro.site?.href}blog`;
 
 let allPosts = await getCollection("posts");
-allPosts = allPosts.sort((a, b) => new Date(b.data.publishDate).valueOf() - new Date(a.data.publishDate).valueOf());
+allPosts = allPosts.sort(
+  (a, b) =>
+    new Date(b.data.publishDate).valueOf() -
+    new Date(a.data.publishDate).valueOf()
+);
 ---
 
-<BaseLayout title={title} description={description} permalink={permalink} current="blog">
+<BaseLayout
+  title={title}
+  description={description}
+  permalink={permalink}
+  current="blog"
+>
   <div class="container">
-    <h1>Blog</h1>
-    <a href="/tags" class="inline-block px-6 py-2 text-white bg-gray-600 rounded-lg shadow hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">
-      Search by Tags
-    </a>
-    
-    <div>
-    {allPosts.map((post, index) => {
-      const href = `/blog/${post.slug}`;
-      return (
-        <div>
-          { index !== 0 && <hr /> }
-          <div class="mb-[50px]">
-          <Card
-            title={post.data.title}
-            pubDate={post.data.publishDate}
-            description={post.data.description}
-            tags={post.data.tags || []}
-            href={href}
-          />
-          </div>
-        </div>
-      )
-    })}
+    <div class="flex w-full justify-between items-center">
+      <h1>Blog</h1>
+      <a
+        href="/tags"
+        class="inline-block px-6 py-2 text-white bg-gray-600 rounded-lg shadow hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+      >
+        Search by Tags
+      </a>
+    </div>
+
+    <div class="mt-[35px]">
+      {
+        allPosts.map((post, index) => {
+          const href = `/blog/${post.slug}`;
+          return (
+            <div>
+              {index !== 0 && <hr />}
+              <div class="mb-[50px]">
+                <Card
+                  title={post.data.title}
+                  pubDate={post.data.publishDate}
+                  description={post.data.description}
+                  tags={post.data.tags || []}
+                  href={href}
+                />
+              </div>
+            </div>
+          );
+        })
+      }
     </div>
   </div>
 </BaseLayout>
 
 <style>
+  h1{
+    margin: 0px;
+  }
+
   h2,
   .post-item-footer {
     font-family: var(--font-family-sans);
